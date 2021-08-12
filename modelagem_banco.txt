@@ -1,0 +1,32 @@
+usuario
+cd_usuario
+ds_email
+ds_login
+ds_senha
+
+
+estabelecimento
+cd_estabelecimento
+ds_estabelecimento
+
+
+departamento
+cd_departamento
+ds_departamento
+
+
+ramal
+cd_ramal
+nr_ramal
+st_whatsapp
+ds_observacao (front: se houver colab. concatenar com o ds_colaborador)
+cd_departamento_fk (not null, todos precisam ter)
+cd_colaborador_fk (front: ao puxar um colaborador trazer seu departamento!)
+
+
+colaborador
+cd_colaborador
+ds_colaborador
+st_demissao
+cd_estabelecimento_fk
+cd_departamento_fk

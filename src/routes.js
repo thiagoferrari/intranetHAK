@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import AcessoController from './app/controllers/AcessoController';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'Hello Thiago' });
-});
+routes.post('/Acesso', AcessoController.store)
 
 export default routes;
