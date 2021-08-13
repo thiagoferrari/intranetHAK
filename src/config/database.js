@@ -6,8 +6,8 @@ module.exports = {
   database: 'intranet',
   define: {
     timestamps: true,
-    underscored: true,
-    underscoredAll: true,
+    /* underscored: true,
+    underscoredAll: true, */
     freezeTableName: true /* isso para de fazer add 's' ao fim da class (extendida do Model) */
   },
 }
