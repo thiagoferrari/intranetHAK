@@ -1,8 +1,24 @@
 import Usuario from "../models/Usuario";
+import * as Yup from 'yup';
 
 class UsuarioController {
   /* padrão: store é usado para gravar (CRIAR LOGIN) */
   async store(req, res) {
+
+    /* criando schema para Yup */
+    const schema = Yup.object().shape({
+      dsLogin: Yup.string().required(),
+      dsEmail: Yup.string().email().required(),
+      dsSenha: Yup.string().required(),
+    })
+
+    /* comparando schema com req.body */
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
+    }
+
+
+
     /* select no DB procurando se já existe login cadastrado */
     const login = await Usuario.findOne({ where: { dsLogin: req.body.dsLogin } })
 
@@ -11,7 +27,7 @@ class UsuarioController {
       return res.status(400).json({ error: 'Este login inserido já foi criado' })
     }
 
-    /* se passar roda um cria o Usuario, mediante Model, com os dados da req */
+    /* se passar, roda um create Usuario, mediante Model, com os dados da req */
     const { id, dsLogin, dsEmail } = await Usuario.create(req.body)
 
     /* retornando o que foi inserido */
@@ -21,7 +37,20 @@ class UsuarioController {
 
   /* update destinado a mudar tudo o que o usuário quer: */
   async update(req, res) {
-    const { dsLogin, dsSenha, id, senhaAntiga } = req.body;
+
+    /* criando schema para Yup */
+    const schema = Yup.object().shape({
+      dsLogin: Yup.string().required(),
+      dsSenha: Yup.string().required(),
+      dsSenhaAntiga: Yup.string().required(),
+    })
+
+    /* comparando schema com req.body */
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
+    }
+
+    const { dsLogin, dsSenha, id, dsSenhaAntiga } = req.body;
 
     const dadosDB = await Usuario.findByPk(id);
 
@@ -36,7 +65,7 @@ class UsuarioController {
     }
 
     // só faço isso se ele informou a senha antiga, isto é, quer alterar a senha
-    if (dsSenha && !(dadosDB.dsSenha === senhaAntiga)) {
+    if (dsSenha && !(dadosDB.dsSenha === dsSenhaAntiga)) {
       return res.status(401).json({ error: 'A senha inserida não condiz com a presente no DB, tente novamente' })
     }
 
