@@ -41,8 +41,12 @@ class UsuarioController {
     /* criando schema para Yup */
     const schema = Yup.object().shape({
       dsLogin: Yup.string().required(),
-      dsSenha: Yup.string().required(),
-      dsSenhaAntiga: Yup.string().required(),
+      dsSenhaAntiga: Yup.string(),
+      dsSenha: Yup.string()
+        .when('dsSenhaAntiga', (dsSenhaAntiga, field) =>
+          dsSenhaAntiga ? field.required() : field),
+      /* quando a dsSenhaAntiga for preenchida 
+      dsSenha se torna obrigatória - field.required() */
     })
 
     /* comparando schema com req.body */
@@ -50,12 +54,15 @@ class UsuarioController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { dsLogin, dsSenha, id, dsSenhaAntiga } = req.body;
+    const { id, dsLogin, dsSenha, dsSenhaAterior } = req.body;
 
     const dadosDB = await Usuario.findByPk(id);
 
-    if (dadosDB.dsLogin !== dsLogin) { // se o login atual é !== do novo(a trocar), quer dizer que o user quer trocar
-      const loginExistente = await Usuario.findOne({ // então procurar no DB se já existe algum igual esse novo
+    // se o login atual é !== do novo(a trocar), quer dizer que o user quer trocar
+    if (dadosDB.dsLogin !== dsLogin) {
+
+      // então procurar no DB se já existe algum igual esse novo
+      const loginExistente = await Usuario.findOne({
         where: { dsLogin },
       })
 
@@ -65,14 +72,14 @@ class UsuarioController {
     }
 
     // só faço isso se ele informou a senha antiga, isto é, quer alterar a senha
-    if (dsSenha && !(dadosDB.dsSenha === dsSenhaAntiga)) {
+    if (dsSenha && !(dadosDB.dsSenha === dsSenhaAterior)) {
       return res.status(401).json({ error: 'A senha inserida não condiz com a presente no DB, tente novamente' })
     }
 
     /* se não parar em nenhum if, dar update: */
     await dadosDB.update(req.body)
 
-    return res.json({ id, dsLogin, dsSenha })
+    return res.json({ id, dsLoginNovo: dsLogin, dsSenhaNova: dsSenha })
   }
 }
 

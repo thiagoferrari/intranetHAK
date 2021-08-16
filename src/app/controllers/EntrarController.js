@@ -35,7 +35,7 @@ class EntrarController {
 		const { id, dsEmail } = dadosDB
 
 		return res.json({
-			usuario: {
+			Logado: {
 				id,
 				dsLogin,
 				dsEmail,
