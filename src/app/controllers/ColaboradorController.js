@@ -17,12 +17,7 @@ class ColaboradorController {
 
     console.log('req.body :>> ', req.body);
 
-    const createRodado = await Colaborador.create({
-      idEmpresa: req.body.idEmpresa,
-      idSetor: req.body.idSetor,
-      dsColaborador: req.body.dsColaborador,
-      stAtivo: req.body.stAtivo
-    })
+    const createRodado = await Colaborador.create(req.body)
 
     /* retornando o que foi inserido */
     return res.json(createRodado)
@@ -42,7 +37,7 @@ class ColaboradorController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { id, dsColaborador } = req.body;
+    const { id } = req.body;
 
     const dadosDB = await Colaborador.findByPk(id);
 

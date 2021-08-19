@@ -49,6 +49,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Colaborador');
+    return queryInterface.dropTable('Ramal');
   },
 };

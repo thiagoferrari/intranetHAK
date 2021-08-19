@@ -1,13 +1,16 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize'
 
 class Ramal extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
-        dsRamal: Sequelize.STRING,
-        idEmpresa: Sequelize.STRING,
-        idSetor: Sequelize.STRING
+        nrRamal: Sequelize.STRING,
+        stWhatsapp: Sequelize.STRING,
+        dsObservacao: Sequelize.STRING,
+
+        // foreignKey:
+        idColaborador: Sequelize.INTEGER,
+        idSetor: Sequelize.INTEGER
       },
       {
         sequelize,
@@ -16,6 +19,11 @@ class Ramal extends Model {
 
     return this
   }
+
+  static associate(models) {
+    this.belongsTo(models.Colaborador, { foreignKey: 'idColaborador', as: 'Colaborador' })
+    this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'Setor' })
+  }
 }
 
-export default Ramal;
+export default Ramal
