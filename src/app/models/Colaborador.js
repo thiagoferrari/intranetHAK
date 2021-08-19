@@ -4,8 +4,10 @@ class Colaborador extends Model {
   static init(sequelize) {
     super.init(
       {
+        stAtivo: Sequelize.STRING,
         dsColaborador: Sequelize.STRING,
-        stDemitdo: Sequelize.STRING,
+        idEmpresa: Sequelize.STRING,
+        idSetor: Sequelize.STRING
       },
       {
         sequelize,
@@ -15,10 +17,10 @@ class Colaborador extends Model {
     return this
   }
 
-  static associate(models) {
+ /*  static associate(models) {
     this.belongsTo(models.Empresa, { foreignKey: 'idEmpresa', as: 'Empresa' })
     this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'Setor' })
-  }
+  } */
 }
 
 export default Colaborador;

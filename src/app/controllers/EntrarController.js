@@ -1,6 +1,8 @@
 import Usuario from '../models/Usuario'
 import * as Yup from 'yup'
 
+/*FALTA VALIDAR SE O USER ESTÁ ATIVO OU NAO*/
+
 class EntrarController {
 	/* método store feito para verificar se o Entrar do Usuário esta OK */
 	async store(req, res) {

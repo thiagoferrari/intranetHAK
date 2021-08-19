@@ -10,9 +10,9 @@ id
 ds_estabelecimento
 
 
-departamento
+setor
 id
-ds_departamento
+ds_setor
 
 
 colaborador
@@ -20,13 +20,13 @@ id
 ds_colaborador
 st_demissao
 id_estabelecimento_fk
-id_departamento_fk
+id_setor_fk
 
 
 ramal
 id
 nr_ramal
 st_whatsapp
-ds_observacao (front: se houver colab. concatenar com o ds_colaborador)
-id_departamento_fk (not null, todos precisam ter)
-id_colaborador_fk (front: ao puxar um colaborador trazer seu departamento!)
+ds_observacao (front: se houver observacao concatenar com o ds_colaborador)
+id_setor_fk (not null, todos precisam ter)
+id_colaborador_fk (front: ao puxar um colaborador trazer seu setor!)

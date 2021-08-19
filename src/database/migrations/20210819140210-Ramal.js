@@ -2,34 +2,40 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Colaborador', {
+    return queryInterface.createTable('Ramal', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      stAtivo: {
+      nrRamal: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      dsColaborador: {
+      stWhatsapp: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      idEmpresa: { // RELACIONAMENTO
+      dsObservacao: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      idColaborador: { // RELACIONAMENTO
         type: Sequelize.INTEGER,
-        references: { model: 'Empresa', key: 'id' },
+        references: { model: 'Colaborador', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
+        // permitir null, alguns ramais não em funcionário em expecífico
       },
       idSetor: { // RELACIONAMENTO
         type: Sequelize.INTEGER,
         references: { model: 'Setor', key: 'id' },
         onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
+        //onDelete: 'SET NULL',
+        allowNull: false,
+        // todos precisam ter, para se organizarem na lista de ramais
       },
       createdAt: {
         type: Sequelize.DATE,

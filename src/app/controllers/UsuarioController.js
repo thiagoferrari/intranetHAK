@@ -7,7 +7,6 @@ class UsuarioController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsLogin: Yup.string().required(),
       dsEmail: Yup.string().email().required(),
       dsSenha: Yup.string().required(),
     })
