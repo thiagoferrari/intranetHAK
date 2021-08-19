@@ -17,24 +17,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      empresaId: {
+      idEmpresa: { // RELACIONAMENTO
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { // RELACIONAMENTO
-          model: 'Empresa',
-          key: 'id'
-        },
+        references: { model: 'Empresa', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,
       },
-      departamentoId: {
+      idSetor: { // RELACIONAMENTO
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { // RELACIONAMENTO
-          model: 'Departamento',
-          key: 'id'
-        },
+        references: { model: 'Setor', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: true,

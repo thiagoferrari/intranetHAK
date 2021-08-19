@@ -1,12 +1,12 @@
-import Empresa from "../models/Empresa";
+import Setor from "../models/Setor";
 import * as Yup from 'yup'
 
-class EmpresaController {
+class SetorController {
   async store(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsEmpresa: Yup.string().required(),
+      dsSetor: Yup.string().required(),
     })
 
     /* comparando schema com req.body */
@@ -14,10 +14,10 @@ class EmpresaController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { dsEmpresa } = await Empresa.create(req.body)
+    const { dsSetor } = await Setor.create(req.body)
 
     /* retornando o que foi inserido */
-    return res.json({ dsEmpresa })
+    return res.json({ dsSetor })
   }
 
 
@@ -25,7 +25,7 @@ class EmpresaController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsEmpresa: Yup.string().required()
+      dsSetor: Yup.string().required()
     })
 
     /* comparando schema com req.body */
@@ -33,14 +33,14 @@ class EmpresaController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { id, dsEmpresa } = req.body;
+    const { id, dsSetor } = req.body;
 
-    const dadosDB = await Empresa.findByPk(id);
+    const dadosDB = await Setor.findByPk(id);
 
     await dadosDB.update(req.body)
 
-    return res.json({ dsEmpresaNovo: dsEmpresa })
+    return res.json({ dsSetorNovo: dsSetor })
   }
 }
 
-export default new EmpresaController()
+export default new SetorController()

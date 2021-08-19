@@ -17,8 +17,6 @@ class UsuarioController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-
-
     /* select no DB procurando se já existe login cadastrado */
     const login = await Usuario.findOne({ where: { dsLogin: req.body.dsLogin } })
 
@@ -54,7 +52,7 @@ class UsuarioController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { id, dsLogin, dsSenha, dsSenhaAterior } = req.body;
+    const { id, dsLogin, dsSenha, dsSenhaAntiga } = req.body;
 
     const dadosDB = await Usuario.findByPk(id);
 
@@ -72,8 +70,12 @@ class UsuarioController {
     }
 
     // só faço isso se ele informou a senha antiga, isto é, quer alterar a senha
-    if (dsSenha && !(dadosDB.dsSenha === dsSenhaAterior)) {
-      return res.status(401).json({ error: 'A senha inserida não condiz com a presente no DB, tente novamente' })
+    if (dsSenhaAntiga) {
+
+      if (dadosDB.dsSenha !== dsSenhaAntiga) {
+        return res.status(401).json({ error: 'A senha inserida não condiz com a presente no DB, tente novamente' })
+      }
+
     }
 
     /* se não parar em nenhum if, dar update: */
