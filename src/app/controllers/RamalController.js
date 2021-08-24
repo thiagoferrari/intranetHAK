@@ -18,26 +18,34 @@ class RamalController {
     }
 
     /* select no DB procurando se já existe o ramal cadastrado */
-    const ramalExistente = await Ramal.findAll({
+
+    const ramalExistente = await Setor.findAll({
+      where: { idSetor: req.body.nrRamal },
+      order: ['id'],
+      attributes: ['id', 'dsSetor'],
+      include: [
+        {
+          model: Ramal,
+          as: 'Setor'
+        }
+      ]
+    })
+
+    /* const ramalExistente = await Ramal.findAll({
       where: { nrRamal: req.body.nrRamal },
       order: ['id'],
       attributes: ['id', 'nrRamal', 'idSetor'],
       include: [
         {
           model: Setor,
-          required: true,
-          attributes: ['id']
+          as: 'fkSetor'
         }
       ]
-    })
+    }) */
 
-    console.log('ramalExistente :>> ', ramalExistente)
+    console.log('ramalExistente :>> ', ramalExistente);
 
-    /* for (let i = 0; i < ramalExistente.length; i++) {
-      console.log('RESUTLADO: >> ', ramalExistente[i].dataValues.idSetor)
-    } */
-
-    await Ramal.create(req.body)
+    //await Ramal.create(req.body)
 
     /* retornando o que foi inserido */
     return res.json(req.body)
