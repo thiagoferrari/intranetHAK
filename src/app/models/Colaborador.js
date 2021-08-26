@@ -7,9 +7,9 @@ class Colaborador extends Model {
         stAtivo: Sequelize.STRING,
         dsColaborador: Sequelize.STRING,
 
-        // foreignKey:
+        /* // foreignKey:
         idEmpresa: Sequelize.INTEGER,
-        idSetor: Sequelize.INTEGER
+        idSetor: Sequelize.INTEGER */
       },
       {
         sequelize,
@@ -21,7 +21,7 @@ class Colaborador extends Model {
 
   static associate(models) {
     this.belongsTo(models.Empresa, { foreignKey: 'idEmpresa', as: 'Empresa' })
-    this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'fkSetor' })
+    this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'Setor' })
   }
 }
 

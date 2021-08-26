@@ -33,8 +33,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: 'Setor', key: 'id' },
         onUpdate: 'CASCADE',
-        //onDelete: 'SET NULL',
-        allowNull: false,
+        onDelete: 'SET NULL',
+        allowNull: true,
         // todos precisam ter, para se organizarem na lista de ramais
       },
       createdAt: {

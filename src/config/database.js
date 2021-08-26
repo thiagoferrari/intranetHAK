@@ -1,6 +1,6 @@
 module.exports = {
   dialect: 'postgres',
-  host: '192.168.1.22',
+  host: '192.168.1.196',
   username: 'postgres',
   password: 'docker',
   database: 'intranet',

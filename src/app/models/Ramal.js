@@ -8,9 +8,9 @@ class Ramal extends Model {
         stWhatsapp: Sequelize.STRING,
         dsObservacao: Sequelize.STRING,
 
-        // foreignKey:
+        /* // foreignKey:
         idColaborador: Sequelize.INTEGER,
-        idSetor: Sequelize.INTEGER
+        idSetor: Sequelize.INTEGER */
       },
       {
         sequelize,
