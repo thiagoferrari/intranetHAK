@@ -18,37 +18,17 @@ class RamalController {
     }
 
     /* select no DB procurando se já existe o ramal cadastrado */
+    const ramalExistente = await Ramal.findAll({
+      where: { nrRamal: req.body.nrRamal }
+    })
 
-    /* const ramalExistente = await Setor.findAll({
-      where: { idSetor: req.body.nrRamal },
-      order: ['id'],
-      attributes: ['id', 'dsSetor'],
-      include: [
-        {
-          model: Ramal,
-          as: 'Setor'
-        }
-      ]
-    }) */
+    const createFeito = await Ramal.create(req.body)
 
-    /* const ramalExistente = await Ramal.findAll({
-      where: { nrRamal: req.body.nrRamal },
-      order: ['id'],
-      attributes: ['id', 'nrRamal', 'idSetor'],
-      include: [
-        {
-          model: Setor,
-          as: 'fkSetor'
-        }
-      ]
-    }) */
+    if (ramalExistente.length) {
+      createFeito.dataValues.ramalExistente = 'S'
+    }
 
-    //console.log('ramalExistente :>> ', ramalExistente);
-
-    await Ramal.create(req.body)
-
-    /* retornando o que foi inserido */
-    return res.json(req.body)
+    return res.json(createFeito)
   }
 
 
@@ -56,7 +36,11 @@ class RamalController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsRamal: Yup.string().required()
+      nrRamal: Yup.string().required(),
+      stWhatsapp: Yup.string().required(),
+      dsObservacao: Yup.string(),
+      idColaborador: Yup.number().required(),
+      idSetor: Yup.number().required(),
     })
 
     /* comparando schema com req.body */
@@ -64,13 +48,21 @@ class RamalController {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { id, dsRamal } = req.body
+    const { id, nrRamal } = req.body
 
     const dadosDB = await Ramal.findByPk(id)
 
-    await dadosDB.update(req.body)
+    const ramalExistente = await Ramal.findAll({
+      where: { nrRamal }
+    })
 
-    return res.json({ dsRamalNovo: dsRamal })
+    const updateFeito = await dadosDB.update(req.body)
+
+    if (ramalExistente.length) {
+      updateFeito.dataValues.ramalExistente = 'S'
+    }
+
+    return res.json(updateFeito)
   }
 }
 
