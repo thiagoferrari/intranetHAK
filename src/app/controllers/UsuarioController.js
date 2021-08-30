@@ -1,5 +1,5 @@
-import Usuario from "../models/Usuario";
-import * as Yup from 'yup';
+import Usuario from "../models/Usuario"
+import * as Yup from 'yup'
 
 class UsuarioController {
   /* padrão: store é usado para gravar (CRIAR LOGIN) */
@@ -60,7 +60,7 @@ class UsuarioController {
 
       // então procurar no DB se já existe algum igual esse novo
       const loginExistente = await Usuario.findOne({
-        where: { dsLogin },
+        where: { dsLogin }
       })
 
       if (loginExistente) {

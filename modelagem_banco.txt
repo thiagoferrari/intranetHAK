@@ -1,22 +1,27 @@
-usuario
+usuario -> LOGIN
 id
-ds_email
+ST_ATIVO
+DS_EMAIL_RECUPERACAO
 ds_login
 ds_senha
 
 
 estabelecimento
 id
+ST_ATIVO
 ds_estabelecimento
 
 
 setor
 id
+ST_ATIVO
 ds_setor
 
 
 colaborador
 id
+ST_ATIVO
+DS_EMAIL
 ds_colaborador
 st_demissao
 id_estabelecimento_fk
@@ -25,6 +30,7 @@ id_setor_fk
 
 ramal
 id
+ST_ATIVO
 nr_ramal
 st_whatsapp
 ds_observacao (front: se houver observacao concatenar com o ds_colaborador)

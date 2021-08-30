@@ -1,0 +1,15 @@
+todos logins
+
+
+todos estabelecimentos
+
+
+todos setores
+
+
+todos colaboradores
+
+
+todos ramais (tela para cadastrar)
+
+lista de ramais por setor

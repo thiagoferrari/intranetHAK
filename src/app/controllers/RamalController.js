@@ -1,6 +1,7 @@
 import Ramal from "../models/Ramal";
 import Setor from "../models/Setor";
 import * as Yup from 'yup'
+import { Op } from "sequelize";
 
 class RamalController {
   async store(req, res) {
@@ -53,12 +54,16 @@ class RamalController {
     const dadosDB = await Ramal.findByPk(id)
 
     const ramalExistente = await Ramal.findAll({
-      where: { nrRamal }
+      where: {
+        nrRamal,
+        id: { [Op.ne]: id },
+      },
     })
 
     const updateFeito = await dadosDB.update(req.body)
 
     if (ramalExistente.length) {
+      console.log('ramalExistente :>> ', ramalExistente)
       updateFeito.dataValues.ramalExistente = 'S'
     }
 

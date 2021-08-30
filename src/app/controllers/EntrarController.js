@@ -1,6 +1,7 @@
 import Usuario from '../models/Usuario'
 import * as Yup from 'yup'
 
+
 /*FALTA VALIDAR SE O USER ESTÁ ATIVO OU NAO*/
 
 class EntrarController {
