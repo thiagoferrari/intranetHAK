@@ -1,13 +1,16 @@
 import Ramal from "../models/Ramal";
-import Setor from "../models/Setor";
 import * as Yup from 'yup'
 import { Op } from "sequelize";
+import Colaborador from "../models/Colaborador";
+import Setor from "../models/Setor";
+
 
 class RamalController {
   async store(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       nrRamal: Yup.string().required(),
       stWhatsapp: Yup.string().required(),
       idSetor: Yup.number().required(),
@@ -37,6 +40,7 @@ class RamalController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       nrRamal: Yup.string().required(),
       stWhatsapp: Yup.string().required(),
       dsObservacao: Yup.string(),
@@ -63,11 +67,52 @@ class RamalController {
     const updateFeito = await dadosDB.update(req.body)
 
     if (ramalExistente.length) {
-      console.log('ramalExistente :>> ', ramalExistente)
       updateFeito.dataValues.ramalExistente = 'S'
     }
 
     return res.json(updateFeito)
+  }
+
+  async index(req, res) {
+    const todosRamais = await Ramal.findAll({
+      where: { stAtivo: 'S' },
+      attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao',],
+      include:
+        [{
+          model: Colaborador,
+          as: 'fkColaborador',
+          attributes: ['dsColaborador']
+        }, {
+          model: Setor,
+          as: 'fkSetor',
+          attributes: ['dsSetor']
+        }],
+      order: ['nrRamal']
+    })
+
+    return res.json(todosRamais)
+  }
+
+
+  async show(req, res) {
+    const id = req.params.id
+
+    const umRamal = await Ramal.findOne({
+      where: { stAtivo: 'S', id },
+      attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao'],
+      include:
+        [{
+          model: Colaborador,
+          as: 'fkColaborador',
+          attributes: ['dsColaborador']
+        }, {
+          model: Setor,
+          as: 'fkSetor',
+          attributes: ['dsSetor']
+        }],
+    })
+
+    return res.json(umRamal)
   }
 }
 

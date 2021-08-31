@@ -6,6 +6,7 @@ class SetorController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       dsSetor: Yup.string().required(),
     })
 

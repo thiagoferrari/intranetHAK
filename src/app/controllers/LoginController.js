@@ -1,13 +1,14 @@
-import Usuario from "../models/Usuario"
+import Login from "../models/Login"
 import * as Yup from 'yup'
 
-class UsuarioController {
+class LoginController {
   /* padrão: store é usado para gravar (CRIAR LOGIN) */
   async store(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsEmail: Yup.string().email().required(),
+      stAtivo: Yup.string().required(),
+      dsEmailRec: Yup.string().email().required(),
       dsSenha: Yup.string().required(),
     })
 
@@ -17,18 +18,18 @@ class UsuarioController {
     }
 
     /* select no DB procurando se já existe login cadastrado */
-    const login = await Usuario.findOne({ where: { dsLogin: req.body.dsLogin } })
+    const login = await Login.findOne({ where: { dsLogin: req.body.dsLogin } })
 
     /* verificando :*/
     if (login) {
       return res.status(400).json({ error: 'Este login inserido já foi criado' })
     }
 
-    /* se passar, roda um create Usuario, mediante Model, com os dados da req */
-    const { id, dsLogin, dsEmail } = await Usuario.create(req.body)
+    /* se passar, roda um create Login, mediante Model, com os dados da req */
+    const { id, dsLogin, dsEmailRec } = await Login.create(req.body)
 
     /* retornando o que foi inserido */
-    return res.json({ id, dsLogin, dsEmail })
+    return res.json({ id, dsLogin, dsEmailRec })
   }
 
 
@@ -53,13 +54,13 @@ class UsuarioController {
 
     const { id, dsLogin, dsSenha, dsSenhaAntiga } = req.body;
 
-    const dadosDB = await Usuario.findByPk(id);
+    const dadosDB = await Login.findByPk(id);
 
     // se o login atual é !== do novo(a trocar), quer dizer que o user quer trocar
     if (dadosDB.dsLogin !== dsLogin) {
 
       // então procurar no DB se já existe algum igual esse novo
-      const loginExistente = await Usuario.findOne({
+      const loginExistente = await Login.findOne({
         where: { dsLogin }
       })
 
@@ -84,4 +85,4 @@ class UsuarioController {
   }
 }
 
-export default new UsuarioController()
+export default new LoginController()

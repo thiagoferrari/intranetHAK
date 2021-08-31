@@ -4,6 +4,7 @@ class Empresa extends Model {
   static init(sequelize) {
     super.init(
       {
+        stAtivo: Sequelize.STRING,
         dsEmpresa: Sequelize.STRING,
       },
       {

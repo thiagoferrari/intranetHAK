@@ -9,6 +9,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      stAtivo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       dsSetor: {
         type: Sequelize.STRING,
         allowNull: false,

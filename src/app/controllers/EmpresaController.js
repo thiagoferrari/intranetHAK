@@ -6,6 +6,7 @@ class EmpresaController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       dsEmpresa: Yup.string().required(),
     })
 

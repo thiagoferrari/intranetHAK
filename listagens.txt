@@ -1,15 +1,16 @@
 todos logins
-
+um login (edição)
 
 todos estabelecimentos
-
+um estab (edição)
 
 todos setores
-
+um setor (edição)
 
 todos colaboradores
+um colab (edição)
 
-
-todos ramais (tela para cadastrar)
+todos ramais
+um único ramal (edição)
 
 lista de ramais por setor

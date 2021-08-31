@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-import Usuario from '../app/models/Usuario';
+import Login from '../app/models/Login';
 import Empresa from '../app/models/Empresa';
 import Setor from '../app/models/Setor';
 import Colaborador from '../app/models/Colaborador';
@@ -8,7 +8,7 @@ import Ramal from '../app/models/Ramal';
 
 import dbConfig from '../config/database';
 
-const models = [Ramal, Colaborador, Usuario, Empresa, Setor,]
+const models = [Ramal, Colaborador, Login, Empresa, Setor,]
 
 class Database {
 	constructor() {
@@ -17,7 +17,7 @@ class Database {
 
 	init() {
 		this.connection = new Sequelize(dbConfig)
-		//console.log('models :>> ', models[4]);
+
 		models
 			.map(model => model.init(this.connection))
 			.map(model => model.associate && model.associate(this.connection.models))

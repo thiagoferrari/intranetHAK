@@ -13,6 +13,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      dsEmail: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       dsColaborador: {
         type: Sequelize.STRING,
         allowNull: false,

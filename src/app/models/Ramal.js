@@ -4,13 +4,10 @@ class Ramal extends Model {
   static init(sequelize) {
     super.init(
       {
+        stAtivo: Sequelize.STRING,
         nrRamal: Sequelize.STRING,
         stWhatsapp: Sequelize.STRING,
         dsObservacao: Sequelize.STRING,
-
-        /* // foreignKey:
-        idColaborador: Sequelize.INTEGER,
-        idSetor: Sequelize.INTEGER */
       },
       {
         sequelize,
@@ -21,8 +18,8 @@ class Ramal extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Colaborador, { foreignKey: 'idColaborador', as: 'Colaborador' })
-    this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'Setor' })
+    this.belongsTo(models.Colaborador, { foreignKey: 'idColaborador', as: 'fkColaborador' })
+    this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'fkSetor' })
   }
 }
 

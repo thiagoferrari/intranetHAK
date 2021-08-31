@@ -2,23 +2,23 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Usuario', {
+    return queryInterface.createTable('Login', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-/*       stAtivo: {
+      stAtivo: {
         type: Sequelize.STRING,
         allowNull: false,
-      }, */
+      },
       dsLogin: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      dsEmail: {
+      dsEmailRec: { //dsEmailRecuperação
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -38,6 +38,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Usuario');
+    return queryInterface.dropTable('Login');
   },
 };
