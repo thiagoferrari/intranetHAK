@@ -1,4 +1,6 @@
 import Setor from "../models/Setor";
+import Empresa from "../models/Empresa";
+import logDelete from "../models/logDelete"
 import * as Yup from 'yup'
 
 class SetorController {
@@ -8,6 +10,7 @@ class SetorController {
     const schema = Yup.object().shape({
       stAtivo: Yup.string().required(),
       dsSetor: Yup.string().required(),
+      idEmpresa: Yup.number().required()
     })
 
     /* comparando schema com req.body */
@@ -22,11 +25,14 @@ class SetorController {
   }
 
 
+  
   async update(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      dsSetor: Yup.string().required()
+      stAtivo: Yup.string().required(),
+      dsSetor: Yup.string().required(),
+      idEmpresa: Yup.number().required()
     })
 
     /* comparando schema com req.body */
@@ -41,6 +47,69 @@ class SetorController {
     await dadosDB.update(req.body)
 
     return res.json({ dsSetorNovo: dsSetor })
+  }
+
+
+
+  async index(req, res) {
+    const verSetores = await Setor.findAll({
+      where: { stAtivo: 'S' },
+      attributes: ['id', 'dsSetor'],
+      include:
+        [{
+          model: Empresa,
+          as: 'fkEmpresa',
+          attributes: ['dsEmpresa']
+        }],
+      order: ['dsSetor']
+    })
+
+    return res.json(verSetores)
+  }
+
+
+
+  async show(req, res) {
+    const { id } = req.params
+
+    const verSetor = await Setor.findAll({
+      where: { stAtivo: 'S', id },
+      attributes: ['id', 'dsSetor'],
+      include:
+        [{
+          model: Empresa,
+          as: 'fkEmpresa',
+          attributes: ['dsEmpresa']
+        }],
+      order: ['dsSetor']
+    })
+
+    return res.json(verSetor)
+  }
+
+
+
+  async delete(req, res) {
+    const { id } = req.params
+
+    const aDeletar = await Setor.findByPk(id)
+
+    let dadosDeletados = {
+      dsTabela: aDeletar.constructor.name,
+      dsDados: JSON.stringify(aDeletar.dataValues)
+    }
+
+    try {
+      await aDeletar.destroy()
+    } catch (error) {
+      return res.status(502).json({
+        error: `Não foi possível deletar este Setor,
+      pois existem registros Filhos localizados na tabela ${error.original.table}`
+      })
+    }
+
+    await logDelete.create(dadosDeletados)
+    return res.json(aDeletar)
   }
 }
 

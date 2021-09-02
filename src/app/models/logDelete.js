@@ -1,11 +1,11 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Setor extends Model {
+class logDelete extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
-        dsSetor: Sequelize.STRING,
+        dsTabela: Sequelize.STRING,
+        dsDados: Sequelize.STRING
       },
       {
         sequelize,
@@ -16,8 +16,7 @@ class Setor extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Empresa, { foreignKey: 'idEmpresa', as: 'fkEmpresa' })
   }
 }
 
-export default Setor;
+export default logDelete;

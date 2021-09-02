@@ -1,13 +1,15 @@
 import Login from "../models/Login"
+import logDelete from "../models/logDelete"
 import * as Yup from 'yup'
 
 class LoginController {
-  /* padrão: store é usado para gravar (CRIAR LOGIN) */
+
   async store(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
       stAtivo: Yup.string().required(),
+      dsLogin: Yup.string().required(),
       dsEmailRec: Yup.string().email().required(),
       dsSenha: Yup.string().required(),
     })
@@ -33,12 +35,15 @@ class LoginController {
   }
 
 
+
   /* update destinado a mudar tudo o que o usuário quer: */
   async update(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       dsLogin: Yup.string().required(),
+      dsEmailRec: Yup.string().email().required(),
       dsSenhaAntiga: Yup.string(),
       dsSenha: Yup.string()
         .when('dsSenhaAntiga', (dsSenhaAntiga, field) =>
@@ -82,6 +87,50 @@ class LoginController {
     await dadosDB.update(req.body)
 
     return res.json({ id, dsLoginNovo: dsLogin, dsSenhaNova: dsSenha })
+  }
+
+
+
+  async index(req, res) {
+    const verLogins = await Login.findAll({
+      where: { stAtivo: 'S' },
+      attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      order: ['dsLogin']
+    })
+
+    return res.json(verLogins)
+  }
+
+
+  async show(req, res) {
+    const { id } = req.params
+
+    const verSetor = await Login.findAll({
+      where: { stAtivo: 'S', id },
+      attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      order: ['dsLogin']
+    })
+
+    return res.json(verSetor)
+  }
+
+
+  
+  async delete(req, res) {
+    const { id } = req.params
+
+    const aDeletar = await Login.findByPk(id)
+
+    let dadosDeletados = {
+      dsTabela: aDeletar.constructor.name,
+      dsDados: JSON.stringify(aDeletar.dataValues)
+    }
+
+    await logDelete.create(dadosDeletados)
+
+    await aDeletar.destroy()
+
+    return res.json(aDeletar)
   }
 }
 

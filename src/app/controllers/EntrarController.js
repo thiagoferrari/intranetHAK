@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 class EntrarController {
 	/* método store feito para verificar se o Entrar do Usuário esta OK */
-	async store(req, res) {
+	async login(req, res) {
 
 		/* criando schema para Yup */
 		const schema = Yup.object().shape({
@@ -46,6 +46,7 @@ class EntrarController {
 			}
 		})
 	}
+	
 }
 
 export default new EntrarController()

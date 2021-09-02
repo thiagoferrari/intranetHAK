@@ -2,27 +2,20 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Setor', {
+    return queryInterface.createTable('logDelete', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      stAtivo: {
+      dsTabela: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
-      dsSetor: {
+      dsDados: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      idEmpresa: { // RELACIONAMENTO
-        type: Sequelize.INTEGER,
-        references: { model: 'Empresa', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: false,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -36,6 +29,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Setor');
+    return queryInterface.dropTable('logDelete');
   },
 };

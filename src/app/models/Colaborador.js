@@ -17,7 +17,6 @@ class Colaborador extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Empresa, { foreignKey: 'idEmpresa', as: 'fkEmpresa' })
     this.belongsTo(models.Setor, { foreignKey: 'idSetor', as: 'fkSetor' })
   }
 }

@@ -5,10 +5,12 @@ import Empresa from '../app/models/Empresa';
 import Setor from '../app/models/Setor';
 import Colaborador from '../app/models/Colaborador';
 import Ramal from '../app/models/Ramal';
+import logDelete from '../app/models/logDelete';
+
 
 import dbConfig from '../config/database';
 
-const models = [Ramal, Colaborador, Login, Empresa, Setor,]
+const models = [Ramal, Colaborador, Login, Empresa, Setor, logDelete]
 
 class Database {
 	constructor() {

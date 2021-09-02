@@ -21,19 +21,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      idEmpresa: { // RELACIONAMENTO
-        type: Sequelize.INTEGER,
-        references: { model: 'Empresa', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true,
-      },
       idSetor: { // RELACIONAMENTO
         type: Sequelize.INTEGER,
         references: { model: 'Setor', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-        allowNull: true,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,

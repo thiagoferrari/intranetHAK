@@ -1,6 +1,6 @@
 import Colaborador from "../models/Colaborador";
+import logDelete from "../models/logDelete"
 import * as Yup from 'yup'
-import Empresa from "../models/Empresa";
 import Setor from "../models/Setor";
 
 class ColaboradorController {
@@ -10,7 +10,8 @@ class ColaboradorController {
     const schema = Yup.object().shape({
       stAtivo: Yup.string().required(),
       dsColaborador: Yup.string().required(),
-      dsEmail: Yup.string().email().required(),
+      dsEmail: Yup.string().email(),
+      idSetor: Yup.number().required()
     })
 
     /* comparando schema com req.body */
@@ -25,12 +26,15 @@ class ColaboradorController {
   }
 
 
+
   async update(req, res) {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
+      stAtivo: Yup.string().required(),
       dsColaborador: Yup.string().required(),
-      stAtivo: Yup.string().required()
+      dsEmail: Yup.string().email(),
+      idSetor: Yup.number().required()
     })
 
     /* comparando schema com req.body */
@@ -47,16 +51,14 @@ class ColaboradorController {
     return res.json(updateRodado)
   }
 
+
+
   async index(req, res) {
-    const todosColaboradores = await Colaborador.findAll({
+    const verColaboradores = await Colaborador.findAll({
       where: { stAtivo: 'S' },
       attributes: ['id', 'dsColaborador', 'dsEmail',],
       include:
         [{
-          model: Empresa,
-          as: 'fkEmpresa',
-          attributes: ['dsEmpresa']
-        }, {
           model: Setor,
           as: 'fkSetor',
           attributes: ['dsSetor']
@@ -64,28 +66,45 @@ class ColaboradorController {
       order: ['dsColaborador']
     })
 
-    return res.json(todosColaboradores)
+    return res.json(verColaboradores)
   }
 
-  async show(req, res) {
-    const id = req.params.id
 
-    const umColaborador = await Colaborador.findOne({
+
+  async show(req, res) {
+    const { id } = req.params
+
+    const verColaborador = await Colaborador.findOne({
       where: { id },
       attributes: ['id', 'dsColaborador', 'dsEmail'],
       include:
         [{
-          model: Empresa,
-          as: 'fkEmpresa',
-          attributes: ['dsEmpresa']
-        }, {
           model: Setor,
           as: 'fkSetor',
           attributes: ['dsSetor']
         }],
     })
 
-    return res.json(umColaborador)
+    return res.json(verColaborador)
+  }
+
+
+  
+  async delete(req, res) {
+    const { id } = req.params
+
+    const aDeletar = await Colaborador.findByPk(id)
+
+    let dadosDeletados = {
+      dsTabela: aDeletar.constructor.name,
+      dsDados: JSON.stringify(aDeletar.dataValues)
+    }
+
+    await logDelete.create(dadosDeletados)
+
+    await aDeletar.destroy()
+
+    return res.json(aDeletar)
   }
 }
 
