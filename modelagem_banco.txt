@@ -1,3 +1,18 @@
+NOVO:
+NormaInterna
+id
+stAtivo
+dtFimNorma
+dsNorma
+dsArquivo
+
+
+
+
+
+
+
+-------------------------------------
 usuario -> LOGIN
 id
 ST_ATIVO

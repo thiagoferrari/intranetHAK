@@ -15,7 +15,7 @@ module.exports = {
       },
       dsEmail: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       dsColaborador: {
         type: Sequelize.STRING,
