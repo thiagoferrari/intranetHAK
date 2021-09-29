@@ -18,6 +18,23 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+import HomeIcon from '@mui/icons-material/Home'; //Página Inicial
+import LightbulbIcon from '@mui/icons-material/Lightbulb'; //Sugestões
+
+import InfoIcon from '@mui/icons-material/Info'; //Dados da Empresa
+import AddIcCallIcon from '@mui/icons-material/AddIcCall'; //Lista de Ramais
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail'; //Lista de E-mails
+import LocalPoliceIcon from '@mui/icons-material/LocalPolice'; //Normas e Políticas Internas
+import DialerSipIcon from '@mui/icons-material/DialerSip'; //Operações do PABX
+
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'; //Gestão de Pessoas
+import WatchLaterIcon from '@mui/icons-material/WatchLater'; //Ocorrência de Ponto
+import NewReleasesIcon from '@mui/icons-material/NewReleases'; //Ocorrência de Acidente
+import FoodBankIcon from '@mui/icons-material/FoodBank'; //Portal Refeição
+
+import VpnKeyIcon from '@mui/icons-material/VpnKey'; //Fazer login
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -126,7 +143,7 @@ export default function MiniDrawer() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        {/* <List>
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -135,9 +152,17 @@ export default function MiniDrawer() {
               <ListItemText primary={text} />
             </ListItem>
           ))}
+        </List> */}
+        <List>
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary={'Página Inicial'} />
+          </ListItem>
         </List>
         <Divider />
-        <List>
+        {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
@@ -146,7 +171,7 @@ export default function MiniDrawer() {
               <ListItemText primary={text} />
             </ListItem>
           ))}
-        </List>
+        </List> */}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
