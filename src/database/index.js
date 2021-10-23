@@ -6,11 +6,16 @@ import Setor from '../app/models/Setor';
 import Colaborador from '../app/models/Colaborador';
 import Ramal from '../app/models/Ramal';
 import logDelete from '../app/models/logDelete';
-
+import Comunicado from '../app/models/Comunicado';
+import Sugestao from '../app/models/Sugestao';
+import Politica from '../app/models/Politica';
+import Pabx from '../app/models/Pabx';
 
 import dbConfig from '../config/database';
 
-const models = [Ramal, Colaborador, Login, Empresa, Setor, logDelete]
+const models = [Ramal, Colaborador, Login,
+	Empresa, Setor, logDelete, Comunicado, Sugestao,
+	Politica, Pabx]
 
 class Database {
 	constructor() {

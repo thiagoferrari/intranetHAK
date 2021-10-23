@@ -5,10 +5,13 @@ import * as Yup from 'yup'
 class EmpresaController {
   async store(req, res) {
 
-    /* criando schema para Yup */
     const schema = Yup.object().shape({
       stAtivo: Yup.string().required(),
-      dsEmpresa: Yup.string().required(),
+      nmFantasia: Yup.string().required(),
+      dsRazaoSocial: Yup.string().required(),
+      cdCNPJ: Yup.string().required(),
+      cdCEP: Yup.string().required(),
+      dsEndereco: Yup.string().required(),
     })
 
     /* comparando schema com req.body */
@@ -23,27 +26,29 @@ class EmpresaController {
   }
 
 
-  
+
   async update(req, res) {
 
-    /* criando schema para Yup */
     const schema = Yup.object().shape({
       stAtivo: Yup.string().required(),
-      dsEmpresa: Yup.string().required(),
+      nmFantasia: Yup.string().required(),
+      dsRazaoSocial: Yup.string().required(),
+      cdCNPJ: Yup.string().required(),
+      cdCEP: Yup.string().required(),
+      dsEndereco: Yup.string().required(),
     })
 
-    /* comparando schema com req.body */
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Dados Inseridos de maneira incorreta' })
     }
 
-    const { id, dsEmpresa } = req.body;
+    const { id } = req.body;
 
     const dadosDB = await Empresa.findByPk(id);
 
     await dadosDB.update(req.body)
 
-    return res.json({ dsEmpresaNovo: dsEmpresa })
+    return res.json(req.body)
   }
 
 
@@ -51,8 +56,8 @@ class EmpresaController {
   async index(req, res) {
     const verEmpresas = await Empresa.findAll({
       where: { stAtivo: 'S' },
-      attributes: ['id', 'dsEmpresa'],
-      order: ['dsEmpresa']
+      attributes: ['id', 'nmFantasia', 'dsRazaoSocial', 'cdCNPJ', 'dsInscricaoEstMun', 'cdCEP', 'dsEndereco', 'dsEmail', 'dsEmailNFE'],
+      order: ['nmFantasia']
     })
 
     return res.json(verEmpresas)
@@ -65,8 +70,8 @@ class EmpresaController {
 
     const verEmpresa = await Empresa.findAll({
       where: { stAtivo: 'S', id },
-      attributes: ['id', 'dsEmpresa'],
-      order: ['dsEmpresa']
+      attributes: ['id', 'nmFantasia'],
+      order: ['nmFantasia']
     })
 
     return res.json(verEmpresa)

@@ -5,7 +5,17 @@ class Empresa extends Model {
     super.init(
       {
         stAtivo: Sequelize.STRING,
-        dsEmpresa: Sequelize.STRING,
+        nmFantasia: Sequelize.STRING,
+        dsRazaoSocial: Sequelize.STRING,
+        cdCNPJ: Sequelize.STRING,
+        dsInscricaoEstMun: Sequelize.STRING,
+        cdCEP: Sequelize.STRING,
+        dsEndereco: Sequelize.STRING,
+        dsEmail: Sequelize.STRING,
+        dsEmailNFE: Sequelize.STRING,
+        urlInstagram: Sequelize.STRING,
+        urlFacebook: Sequelize.STRING,
+        urlSite: Sequelize.STRING,
       },
       {
         sequelize,

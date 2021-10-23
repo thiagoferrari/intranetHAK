@@ -13,9 +13,49 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      dsEmpresa: {
+      nmFantasia: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      dsRazaoSocial: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      cdCNPJ: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsInscricaoEstMun: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      cdCEP: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsEndereco: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsEmail: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      dsEmailNFE: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      urlInstagram: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      urlFacebook: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      urlSite: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,

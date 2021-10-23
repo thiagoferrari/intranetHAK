@@ -2,20 +2,24 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('logDelete', {
+    return queryInterface.createTable('Pabx', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      dsTabela: {
+      stAtivo: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      dsDados: {
-        type: Sequelize.STRING(9999),
-        allowNull: true,
+      dsTitulo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsInstrucao: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -29,6 +33,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('logDelete');
+    return queryInterface.dropTable('Pabx');
   },
 };

@@ -1,13 +1,50 @@
 NOVO:
-NormaInterna
+ComunicadoInicial
 id
 stAtivo
-dtFimNorma
-dsNorma
-dsArquivo
+dsTitulo
+dsComunicado
+arqComunicado
+imgComunicado
 
 
+Sugestao
+id
+stAtivo
+dtSugestao
+dsSugestao
+nmPessoa
 
+
+UPDATE
+Empresa
+TIRAR: dsEmpresa
+nmFantasia
+dsRazaoSocial
+cdCNPJ
+dsInscricaoEstMun
+cdCEP
+dsEndereco
+dsEmail
+dsEmailNFE
+urlInstagram
+urlFacebook
+urlSite
+
+
+RegraInterna
+id
+stAtivo
+dsTitulo
+dsResumo
+arqRegra
+imgRegra
+
+Pabx
+id
+stAtivo
+dsTitulo
+dsInstrucao
 
 
 

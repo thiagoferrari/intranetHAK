@@ -2,19 +2,31 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('logDelete', {
+    return queryInterface.createTable('Politica', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      dsTabela: {
+      stAtivo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsTitulo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      dsResumo: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      arqRegra: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      dsDados: {
-        type: Sequelize.STRING(9999),
+      imgRegra: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
       createdAt: {
@@ -29,6 +41,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('logDelete');
+    return queryInterface.dropTable('Politica');
   },
 };
