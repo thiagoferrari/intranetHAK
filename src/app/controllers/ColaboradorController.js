@@ -56,7 +56,7 @@ class ColaboradorController {
   async index(req, res) {
     const verColaboradores = await Colaborador.findAll({
       where: { stAtivo: 'S' },
-      attributes: ['id', 'dsColaborador', 'dsEmail',],
+      attributes: ['id', 'stAtivo', 'dsColaborador', 'dsEmail',],
       include:
         [{
           model: Setor,
@@ -89,7 +89,7 @@ class ColaboradorController {
   }
 
 
-  
+
   async delete(req, res) {
     const { id } = req.params
 

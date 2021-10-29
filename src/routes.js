@@ -28,31 +28,31 @@ routes.post('/Pabx', PabxController.store)
 
 
 // read
-routes.get('/Logins', LoginController.index)
+routes.get('/Login', LoginController.index)
 routes.get('/Login/:id', LoginController.show)
 
-routes.get('/Empresas', EmpresaController.index)
+routes.get('/Empresa', EmpresaController.index)
 routes.get('/Empresa/:id', EmpresaController.show)
 
-routes.get('/Setores', SetorController.index)
+routes.get('/Setor', SetorController.index)
 routes.get('/Setor/:id', SetorController.show)
 
-routes.get('/Colaboradores', ColaboradorController.index)
+routes.get('/Colaborador', ColaboradorController.index)
 routes.get('/Colaborador/:id', ColaboradorController.show)
 
-routes.get('/Ramais', RamalController.index)
+routes.get('/Ramal', RamalController.index)
 routes.get('/Ramal/:id', RamalController.show)
 
-routes.get('/Comunicados', ComunicadoController.index)
+routes.get('/Comunicado', ComunicadoController.index)
 routes.get('/Comunicado/:id', ComunicadoController.show)
 
-routes.get('/Sugestoes', SugestaoController.index)
+routes.get('/Sugestao', SugestaoController.index)
 routes.get('/Sugestao/:id', SugestaoController.show)
 
-routes.get('/Politicas', PoliticaController.index)
+routes.get('/Politica', PoliticaController.index)
 routes.get('/Politica/:id', PoliticaController.show)
 
-routes.get('/Pabxs', PabxController.index)
+routes.get('/Pabx', PabxController.index)
 routes.get('/Pabx/:id', PabxController.show)
 
 
