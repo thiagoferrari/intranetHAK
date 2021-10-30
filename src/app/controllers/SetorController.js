@@ -59,7 +59,7 @@ class SetorController {
         [{
           model: Empresa,
           as: 'fkEmpresa',
-          attributes: ['dsEmpresa']
+          attributes: ['nmFantasia']
         }],
       order: ['dsSetor']
     })
@@ -79,7 +79,7 @@ class SetorController {
         [{
           model: Empresa,
           as: 'fkEmpresa',
-          attributes: ['dsEmpresa']
+          attributes: ['nmFantasia']
         }],
       order: ['dsSetor']
     })

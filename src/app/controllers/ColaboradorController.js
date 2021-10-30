@@ -81,7 +81,7 @@ class ColaboradorController {
         [{
           model: Setor,
           as: 'fkSetor',
-          attributes: ['dsSetor']
+          attributes: ['id','dsSetor']
         }],
     })
 
