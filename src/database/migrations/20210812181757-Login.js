@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       stAtivo: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       dsLogin: {

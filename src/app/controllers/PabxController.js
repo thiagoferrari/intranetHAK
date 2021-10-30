@@ -7,6 +7,7 @@ class PabxController {
   async store(req, res) {
 
     const schema = Yup.object().shape({
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsInstrucao: Yup.string().required()
     })
@@ -25,6 +26,7 @@ class PabxController {
   async update(req, res) {
 
     const schema = Yup.object().shape({
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsInstrucao: Yup.string().required()
     })
@@ -44,7 +46,6 @@ class PabxController {
 
   async index(req, res) {
     const verPabxs = await Pabx.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'dsTitulo', 'dsInstrucao'],
       order: ['dsTitulo']
     })
@@ -58,7 +59,7 @@ class PabxController {
     const { id } = req.params
 
     const verPabx = await Pabx.findOne({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'dsTitulo', 'dsInstrucao'],
       order: ['dsTitulo']
     })

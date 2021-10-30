@@ -8,7 +8,7 @@ class ColaboradorController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsColaborador: Yup.string().required(),
       dsEmail: Yup.string().email(),
       idSetor: Yup.number().required()
@@ -31,7 +31,7 @@ class ColaboradorController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsColaborador: Yup.string().required(),
       dsEmail: Yup.string().email(),
       idSetor: Yup.number().required()
@@ -55,7 +55,6 @@ class ColaboradorController {
 
   async index(req, res) {
     const verColaboradores = await Colaborador.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'stAtivo', 'dsColaborador', 'dsEmail',],
       include:
         [{
@@ -76,12 +75,12 @@ class ColaboradorController {
 
     const verColaborador = await Colaborador.findOne({
       where: { id },
-      attributes: ['id', 'dsColaborador', 'dsEmail'],
+      attributes: ['id', 'stAtivo', 'dsColaborador', 'dsEmail',],
       include:
         [{
           model: Setor,
           as: 'fkSetor',
-          attributes: ['id','dsSetor']
+          attributes: ['id', 'dsSetor']
         }],
     })
 

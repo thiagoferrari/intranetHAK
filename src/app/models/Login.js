@@ -4,7 +4,7 @@ class Login extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsLogin: Sequelize.STRING,
         dsEmailRec: Sequelize.STRING,
         dsSenha: Sequelize.STRING,

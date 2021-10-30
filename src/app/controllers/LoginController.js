@@ -8,7 +8,7 @@ class LoginController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsLogin: Yup.string().required(),
       dsEmailRec: Yup.string().email().required(),
       dsSenha: Yup.string().required(),
@@ -41,7 +41,7 @@ class LoginController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsLogin: Yup.string().required(),
       dsEmailRec: Yup.string().email().required(),
       dsSenhaAntiga: Yup.string(),
@@ -93,7 +93,6 @@ class LoginController {
 
   async index(req, res) {
     const verLogins = await Login.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
       order: ['dsLogin']
     })
@@ -106,7 +105,7 @@ class LoginController {
     const { id } = req.params
 
     const verSetor = await Login.findAll({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
       order: ['dsLogin']
     })

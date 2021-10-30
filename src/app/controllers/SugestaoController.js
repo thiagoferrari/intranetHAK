@@ -6,7 +6,7 @@ class SugestaoController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsSugestao: Yup.string().required(),
     })
 
@@ -31,7 +31,6 @@ class SugestaoController {
 
   async index(req, res) {
     const verSugestoes = await Sugestao.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'nmPessoa', 'dsSugestao'],
       order: ['dsSugestao']
     })
@@ -44,7 +43,7 @@ class SugestaoController {
     const { id } = req.params
 
     const verSugestao = await Sugestao.findAll({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'nmPessoa', 'dsSugestao'],
       order: ['dsSugestao']
     })

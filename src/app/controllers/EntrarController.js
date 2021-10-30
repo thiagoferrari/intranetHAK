@@ -10,7 +10,7 @@ class EntrarController {
 
 		/* criando schema para Yup */
 		const schema = Yup.object().shape({
-			stAtivo: Yup.string().required(),
+			stAtivo: Yup.boolean().required(),
 			dsLogin: Yup.string().required(),
 			dsSenha: Yup.string().required(),
 		})

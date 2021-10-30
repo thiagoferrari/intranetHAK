@@ -6,7 +6,7 @@ class EmpresaController {
   async store(req, res) {
 
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       nmFantasia: Yup.string().required(),
       dsRazaoSocial: Yup.string().required(),
       cdCNPJ: Yup.string().required(),
@@ -30,7 +30,7 @@ class EmpresaController {
   async update(req, res) {
 
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       nmFantasia: Yup.string().required(),
       dsRazaoSocial: Yup.string().required(),
       cdCNPJ: Yup.string().required(),
@@ -55,7 +55,6 @@ class EmpresaController {
 
   async index(req, res) {
     const verEmpresas = await Empresa.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'nmFantasia', 'dsRazaoSocial', 'cdCNPJ', 'dsInscricaoEstMun', 'cdCEP', 'dsEndereco', 'dsEmail', 'dsEmailNFE'],
       order: ['nmFantasia']
     })
@@ -69,7 +68,7 @@ class EmpresaController {
     const { id } = req.params
 
     const verEmpresa = await Empresa.findAll({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'nmFantasia'],
       order: ['nmFantasia']
     })

@@ -4,7 +4,7 @@ class Sugestao extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsSugestao: Sequelize.STRING,
         nmPessoa: Sequelize.STRING,
       },

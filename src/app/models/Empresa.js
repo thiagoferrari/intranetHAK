@@ -4,7 +4,7 @@ class Empresa extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         nmFantasia: Sequelize.STRING,
         dsRazaoSocial: Sequelize.STRING,
         cdCNPJ: Sequelize.STRING,

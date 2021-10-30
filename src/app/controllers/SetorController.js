@@ -8,7 +8,7 @@ class SetorController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsSetor: Yup.string().required(),
       idEmpresa: Yup.number().required()
     })
@@ -30,7 +30,7 @@ class SetorController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsSetor: Yup.string().required(),
       idEmpresa: Yup.number().required()
     })
@@ -53,7 +53,6 @@ class SetorController {
 
   async index(req, res) {
     const verSetores = await Setor.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'dsSetor'],
       include:
         [{
@@ -73,7 +72,7 @@ class SetorController {
     const { id } = req.params
 
     const verSetor = await Setor.findAll({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'dsSetor'],
       include:
         [{

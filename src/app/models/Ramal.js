@@ -4,7 +4,7 @@ class Ramal extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         nrRamal: Sequelize.STRING,
         stWhatsapp: Sequelize.STRING,
         dsObservacao: Sequelize.STRING,

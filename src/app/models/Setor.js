@@ -4,7 +4,7 @@ class Setor extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsSetor: Sequelize.STRING,
       },
       {

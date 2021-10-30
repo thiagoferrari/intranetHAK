@@ -4,7 +4,7 @@ class Comunicado extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsTitulo: Sequelize.STRING,
         dsComunicado: Sequelize.STRING,
         arqComunicado: Sequelize.STRING,

@@ -4,7 +4,7 @@ class Colaborador extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsColaborador: Sequelize.STRING,
         dsEmail: Sequelize.STRING,
       },

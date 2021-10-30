@@ -7,6 +7,7 @@ class PoliticaController {
   async store(req, res) {
 
     const schema = Yup.object().shape({
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsResumo: Yup.string().required()
     })
@@ -25,6 +26,7 @@ class PoliticaController {
   async update(req, res) {
 
     const schema = Yup.object().shape({
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsResumo: Yup.string().required()
     })
@@ -44,7 +46,6 @@ class PoliticaController {
 
   async index(req, res) {
     const verPoliticas = await Politica.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'dsTitulo', 'dsResumo'],
       order: ['dsTitulo']
     })
@@ -58,7 +59,7 @@ class PoliticaController {
     const { id } = req.params
 
     const verPolitica = await Politica.findOne({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'dsTitulo', 'dsResumo'],
       order: ['dsTitulo']
     })

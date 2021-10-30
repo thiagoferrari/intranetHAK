@@ -6,7 +6,7 @@ class ComunicadoController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsComunicado: Yup.string().required(),
     })
@@ -24,7 +24,7 @@ class ComunicadoController {
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       dsTitulo: Yup.string().required(),
       dsComunicado: Yup.string().required(),
     })
@@ -46,7 +46,6 @@ class ComunicadoController {
 
   async index(req, res) {
     const verComunicados = await Comunicado.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'dsTitulo', 'dsComunicado'],
       order: ['dsTitulo']
     })
@@ -58,8 +57,8 @@ class ComunicadoController {
   async show(req, res) {
     const { id } = req.params
 
-    const verComunicado = await Comunicado.findAll({
-      where: { stAtivo: 'S', id },
+    const verComunicado = await Comunicado.findOne({
+      where: { id },
       attributes: ['id', 'dsTitulo', 'dsComunicado'],
       order: ['dsTitulo']
     })

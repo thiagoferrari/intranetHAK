@@ -4,7 +4,7 @@ class Politica extends Model {
   static init(sequelize) {
     super.init(
       {
-        stAtivo: Sequelize.STRING,
+        stAtivo: Sequelize.BOOLEAN,
         dsTitulo: Sequelize.STRING,
         dsResumo: Sequelize.STRING,
         arqRegra: Sequelize.STRING,

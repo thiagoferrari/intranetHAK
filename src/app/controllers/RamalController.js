@@ -10,7 +10,7 @@ class RamalController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       nrRamal: Yup.string().required(),
       stWhatsapp: Yup.string().required(),
       //dsObservacao: Yup.string(),
@@ -62,7 +62,7 @@ class RamalController {
 
     /* criando schema para Yup */
     const schema = Yup.object().shape({
-      stAtivo: Yup.string().required(),
+      stAtivo: Yup.boolean().required(),
       nrRamal: Yup.string().required(),
       stWhatsapp: Yup.string().required(),
       //dsObservacao: Yup.string(),
@@ -117,7 +117,6 @@ class RamalController {
 
   async index(req, res) {
     const verRamais = await Ramal.findAll({
-      where: { stAtivo: 'S' },
       attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao',],
       include:
         [{
@@ -141,7 +140,7 @@ class RamalController {
     const { id } = req.params
 
     const verRamal = await Ramal.findOne({
-      where: { stAtivo: 'S', id },
+      where: { id },
       attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao'],
       include:
         [{
