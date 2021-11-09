@@ -6,7 +6,7 @@ class Ramal extends Model {
       {
         stAtivo: Sequelize.BOOLEAN,
         nrRamal: Sequelize.STRING,
-        stWhatsapp: Sequelize.STRING,
+        stWhatsapp: Sequelize.BOOLEAN,
         dsObservacao: Sequelize.STRING,
       },
       {

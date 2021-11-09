@@ -12,7 +12,7 @@ class RamalController {
     const schema = Yup.object().shape({
       stAtivo: Yup.boolean().required(),
       nrRamal: Yup.string().required(),
-      stWhatsapp: Yup.string().required(),
+      stWhatsapp: Yup.boolean().required(),
       //dsObservacao: Yup.string(),
       //idColaborador: Yup.number(),
       idSetor: Yup.number().required(),
@@ -64,7 +64,7 @@ class RamalController {
     const schema = Yup.object().shape({
       stAtivo: Yup.boolean().required(),
       nrRamal: Yup.string().required(),
-      stWhatsapp: Yup.string().required(),
+      stWhatsapp: Yup.boolean().required(),
       //dsObservacao: Yup.string(),
       //idColaborador: Yup.number(),
       idSetor: Yup.number().required(),
@@ -117,7 +117,7 @@ class RamalController {
 
   async index(req, res) {
     const verRamais = await Ramal.findAll({
-      attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao',],
+      attributes: ['id', 'stAtivo', 'nrRamal', 'stWhatsapp', 'dsObservacao',],
       include:
         [{
           model: Colaborador,
@@ -141,7 +141,7 @@ class RamalController {
 
     const verRamal = await Ramal.findOne({
       where: { id },
-      attributes: ['id', 'nrRamal', 'stWhatsapp', 'dsObservacao'],
+      attributes: ['id', 'stAtivo', 'nrRamal', 'stWhatsapp', 'dsObservacao'],
       include:
         [{
           model: Colaborador,
@@ -158,7 +158,7 @@ class RamalController {
   }
 
 
-  
+
   async delete(req, res) {
     const { id } = req.params
 

@@ -31,7 +31,7 @@ class SugestaoController {
 
   async index(req, res) {
     const verSugestoes = await Sugestao.findAll({
-      attributes: ['id', 'nmPessoa', 'dsSugestao'],
+      attributes: ['id', 'stAtivo', 'nmPessoa', 'dsSugestao'],
       order: ['dsSugestao']
     })
 
@@ -44,7 +44,7 @@ class SugestaoController {
 
     const verSugestao = await Sugestao.findAll({
       where: { id },
-      attributes: ['id', 'nmPessoa', 'dsSugestao'],
+      attributes: ['id', 'stAtivo', 'nmPessoa', 'dsSugestao'],
       order: ['dsSugestao']
     })
 

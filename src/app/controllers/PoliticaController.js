@@ -46,7 +46,7 @@ class PoliticaController {
 
   async index(req, res) {
     const verPoliticas = await Politica.findAll({
-      attributes: ['id', 'dsTitulo', 'dsResumo'],
+      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsResumo'],
       order: ['dsTitulo']
     })
 
@@ -60,7 +60,7 @@ class PoliticaController {
 
     const verPolitica = await Politica.findOne({
       where: { id },
-      attributes: ['id', 'dsTitulo', 'dsResumo'],
+      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsResumo'],
       order: ['dsTitulo']
     })
 

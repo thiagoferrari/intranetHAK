@@ -10,7 +10,7 @@ class ColaboradorController {
     const schema = Yup.object().shape({
       stAtivo: Yup.boolean().required(),
       dsColaborador: Yup.string().required(),
-      dsEmail: Yup.string().email(),
+      dsEmail: Yup.string(),
       idSetor: Yup.number().required()
     })
 
@@ -33,7 +33,7 @@ class ColaboradorController {
     const schema = Yup.object().shape({
       stAtivo: Yup.boolean().required(),
       dsColaborador: Yup.string().required(),
-      dsEmail: Yup.string().email(),
+      dsEmail: Yup.string(),
       idSetor: Yup.number().required()
     })
 

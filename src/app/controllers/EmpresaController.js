@@ -55,7 +55,7 @@ class EmpresaController {
 
   async index(req, res) {
     const verEmpresas = await Empresa.findAll({
-      attributes: ['id', 'nmFantasia', 'dsRazaoSocial', 'cdCNPJ', 'dsInscricaoEstMun', 'cdCEP', 'dsEndereco', 'dsEmail', 'dsEmailNFE'],
+      attributes: ['id', 'stAtivo', 'nmFantasia', 'dsRazaoSocial', 'cdCNPJ', 'dsInscricaoEstMun', 'cdCEP', 'dsEndereco', 'dsEmail', 'dsEmailNFE'],
       order: ['nmFantasia']
     })
 
@@ -69,7 +69,7 @@ class EmpresaController {
 
     const verEmpresa = await Empresa.findAll({
       where: { id },
-      attributes: ['id', 'nmFantasia'],
+      attributes: ['id', 'stAtivo', 'nmFantasia'],
       order: ['nmFantasia']
     })
 

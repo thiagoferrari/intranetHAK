@@ -46,7 +46,7 @@ class PabxController {
 
   async index(req, res) {
     const verPabxs = await Pabx.findAll({
-      attributes: ['id', 'dsTitulo', 'dsInstrucao'],
+      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsInstrucao'],
       order: ['dsTitulo']
     })
 
@@ -60,7 +60,7 @@ class PabxController {
 
     const verPabx = await Pabx.findOne({
       where: { id },
-      attributes: ['id', 'dsTitulo', 'dsInstrucao'],
+      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsInstrucao'],
       order: ['dsTitulo']
     })
 

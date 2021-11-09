@@ -53,7 +53,7 @@ class SetorController {
 
   async index(req, res) {
     const verSetores = await Setor.findAll({
-      attributes: ['id', 'dsSetor'],
+      attributes: ['id', 'stAtivo', 'dsSetor'],
       include:
         [{
           model: Empresa,
@@ -73,7 +73,7 @@ class SetorController {
 
     const verSetor = await Setor.findAll({
       where: { id },
-      attributes: ['id', 'dsSetor'],
+      attributes: ['id', 'stAtivo', 'dsSetor'],
       include:
         [{
           model: Empresa,

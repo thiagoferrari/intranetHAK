@@ -18,7 +18,7 @@ module.exports = {
         allowNull: false,
       },
       stWhatsapp: {
-        type: Sequelize.STRING,
+        type: Sequelize.BOOLEAN,
         allowNull: false,
       },
       dsObservacao: {

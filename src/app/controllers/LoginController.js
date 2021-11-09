@@ -93,7 +93,7 @@ class LoginController {
 
   async index(req, res) {
     const verLogins = await Login.findAll({
-      attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      attributes: ['id', 'stAtivo', 'dsLogin', 'dsEmailRec', 'dsSenha'],
       order: ['dsLogin']
     })
 
@@ -106,7 +106,7 @@ class LoginController {
 
     const verSetor = await Login.findAll({
       where: { id },
-      attributes: ['id', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      attributes: ['id', 'stAtivo', 'dsLogin', 'dsEmailRec', 'dsSenha'],
       order: ['dsLogin']
     })
 
