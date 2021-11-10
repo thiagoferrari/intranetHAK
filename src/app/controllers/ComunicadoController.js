@@ -46,7 +46,7 @@ class ComunicadoController {
 
   async index(req, res) {
     const verComunicados = await Comunicado.findAll({
-      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsComunicado'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       order: ['dsTitulo']
     })
 
@@ -59,7 +59,7 @@ class ComunicadoController {
 
     const verComunicado = await Comunicado.findOne({
       where: { id },
-      attributes: ['id', 'stAtivo', 'dsTitulo', 'dsComunicado'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       order: ['dsTitulo']
     })
 

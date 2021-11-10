@@ -93,7 +93,7 @@ class LoginController {
 
   async index(req, res) {
     const verLogins = await Login.findAll({
-      attributes: ['id', 'stAtivo', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       order: ['dsLogin']
     })
 
@@ -106,7 +106,7 @@ class LoginController {
 
     const verSetor = await Login.findAll({
       where: { id },
-      attributes: ['id', 'stAtivo', 'dsLogin', 'dsEmailRec', 'dsSenha'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       order: ['dsLogin']
     })
 
@@ -114,7 +114,7 @@ class LoginController {
   }
 
 
-  
+
   async delete(req, res) {
     const { id } = req.params
 

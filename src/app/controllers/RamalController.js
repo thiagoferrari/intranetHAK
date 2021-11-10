@@ -117,7 +117,7 @@ class RamalController {
 
   async index(req, res) {
     const verRamais = await Ramal.findAll({
-      attributes: ['id', 'stAtivo', 'nrRamal', 'stWhatsapp', 'dsObservacao',],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       include:
         [{
           model: Colaborador,
@@ -141,7 +141,7 @@ class RamalController {
 
     const verRamal = await Ramal.findOne({
       where: { id },
-      attributes: ['id', 'stAtivo', 'nrRamal', 'stWhatsapp', 'dsObservacao'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       include:
         [{
           model: Colaborador,

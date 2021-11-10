@@ -25,7 +25,7 @@ class SetorController {
   }
 
 
-  
+
   async update(req, res) {
 
     /* criando schema para Yup */
@@ -53,7 +53,7 @@ class SetorController {
 
   async index(req, res) {
     const verSetores = await Setor.findAll({
-      attributes: ['id', 'stAtivo', 'dsSetor'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       include:
         [{
           model: Empresa,
@@ -73,7 +73,7 @@ class SetorController {
 
     const verSetor = await Setor.findAll({
       where: { id },
-      attributes: ['id', 'stAtivo', 'dsSetor'],
+      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       include:
         [{
           model: Empresa,
