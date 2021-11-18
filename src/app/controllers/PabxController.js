@@ -61,7 +61,6 @@ class PabxController {
     const verPabx = await Pabx.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
-      order: ['dsTitulo']
     })
 
     return res.json(verPabx)

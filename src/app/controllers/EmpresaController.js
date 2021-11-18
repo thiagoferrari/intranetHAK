@@ -67,10 +67,9 @@ class EmpresaController {
   async show(req, res) {
     const { id } = req.params
 
-    const verEmpresa = await Empresa.findAll({
+    const verEmpresa = await Empresa.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
-      order: ['nmFantasia']
     })
 
     return res.json(verEmpresa)

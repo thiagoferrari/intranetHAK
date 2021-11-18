@@ -104,13 +104,12 @@ class LoginController {
   async show(req, res) {
     const { id } = req.params
 
-    const verSetor = await Login.findAll({
+    const verLogin = await Login.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
-      order: ['dsLogin']
     })
 
-    return res.json(verSetor)
+    return res.json(verLogin)
   }
 
 

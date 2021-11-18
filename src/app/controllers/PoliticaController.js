@@ -61,7 +61,6 @@ class PoliticaController {
     const verPolitica = await Politica.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
-      order: ['dsTitulo']
     })
 
     return res.json(verPolitica)

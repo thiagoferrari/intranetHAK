@@ -71,7 +71,7 @@ class SetorController {
   async show(req, res) {
     const { id } = req.params
 
-    const verSetor = await Setor.findAll({
+    const verSetor = await Setor.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
       include:
@@ -80,7 +80,6 @@ class SetorController {
           as: 'fkEmpresa',
           attributes: ['nmFantasia']
         }],
-      order: ['dsSetor']
     })
 
     return res.json(verSetor)

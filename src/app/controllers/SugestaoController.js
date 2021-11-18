@@ -42,10 +42,9 @@ class SugestaoController {
   async show(req, res) {
     const { id } = req.params
 
-    const verSugestao = await Sugestao.findAll({
+    const verSugestao = await Sugestao.findOne({
       where: { id },
       attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
-      order: ['dsSugestao']
     })
 
     return res.json(verSugestao)
