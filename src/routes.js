@@ -1,4 +1,8 @@
 import { Router } from 'express';
+import multer from 'multer';
+import multerConfig from './config/multer';
+
+import AnexoController from './app/controllers/AnexoController';
 import LoginController from './app/controllers/LoginController';
 import EntrarController from './app/controllers/EntrarController';
 import EmpresaController from './app/controllers/EmpresaController';
@@ -11,6 +15,9 @@ import PoliticaController from './app/controllers/PoliticaController';
 import PabxController from './app/controllers/PabxController';
 
 const routes = new Router();
+const upload = multer(multerConfig);
+
+routes.post('/Anexo', upload.single('anexo'), AnexoController.store);
 
 routes.post('/Entrar', EntrarController.login)
 

@@ -1,5 +1,6 @@
 import Sequelize from 'sequelize';
 
+import Anexo from '../app/models/Anexo';
 import Login from '../app/models/Login';
 import Empresa from '../app/models/Empresa';
 import Setor from '../app/models/Setor';
@@ -13,7 +14,7 @@ import Pabx from '../app/models/Pabx';
 
 import dbConfig from '../config/database';
 
-const models = [Ramal, Colaborador, Login,
+const models = [Anexo, Ramal, Colaborador, Login,
 	Empresa, Setor, logDelete, Comunicado, Sugestao,
 	Politica, Pabx]
 

@@ -7,8 +7,8 @@ class Comunicado extends Model {
         stAtivo: Sequelize.BOOLEAN,
         dsTitulo: Sequelize.STRING,
         dsComunicado: Sequelize.STRING,
-        arqComunicado: Sequelize.STRING,
-        imgComunicado: Sequelize.STRING,
+        /* idImg: Sequelize.INTEGER,
+        idDoc: Sequelize.INTEGER, */
       },
       {
         sequelize,
@@ -19,6 +19,8 @@ class Comunicado extends Model {
   }
 
   static associate(models) {
+    this.belongsTo(models.Anexo, { foreignKey: 'idDoc', as: 'fkDoc' })
+    this.belongsTo(models.Anexo, { foreignKey: 'idImg', as: 'fkImg' })
   }
 }
 

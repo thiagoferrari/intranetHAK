@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import routes from './routes'
+import path from 'path';
 
 
 import './database'
@@ -17,6 +18,9 @@ class App {
     this.server.use(cors(
       /* {origin: true} //permite requisições */
     ))
+    this.server.use('/MDWRAnexo',
+      express.static(path.resolve(__dirname, '..', 'data', 'uploads'))
+    );
   }
 
   routes() {

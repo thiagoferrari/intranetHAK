@@ -1,4 +1,13 @@
 NOVO:
+Documento
+id
+stAtivo
+dsTitulo
+dsDocumento
+arqDocumento
+imgDocumento
+
+---------------------------------------------------
 ComunicadoInicial
 id
 stAtivo

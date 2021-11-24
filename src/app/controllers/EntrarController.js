@@ -80,7 +80,7 @@ class EntrarController {
 			})
 		}
 	}
-
+	
 }
 
 export default new EntrarController()

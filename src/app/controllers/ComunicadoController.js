@@ -1,4 +1,5 @@
 import Comunicado from "../models/Comunicado"
+import Anexo from "../models/Anexo"
 import logDelete from "../models/logDelete"
 import * as Yup from 'yup'
 
@@ -46,7 +47,18 @@ class ComunicadoController {
 
   async index(req, res) {
     const verComunicados = await Comunicado.findAll({
-      attributes: { include: [], exclude: ['createdAt', 'updatedAt'] },
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+      include: [
+        {
+          model: Anexo,
+          as: 'fkDoc',
+          attributes: ['name', 'path', 'url'],
+        }, {
+          model: Anexo,
+          as: 'fkImg',
+          attributes: ['name', 'path', 'url'],
+        }
+      ],
       order: ['dsTitulo']
     })
 

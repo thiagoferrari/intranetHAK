@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Comunicado', {
+    return queryInterface.createTable('Documento', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -17,23 +17,17 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      dsComunicado: {
+      dsDocumento: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      idImg: {
-        type: Sequelize.INTEGER,
-        references: { model: 'Anexo', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true
+      arqDocumento: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
-      idDoc: {
-        type: Sequelize.INTEGER,
-        references: { model: 'Anexo', key: 'id' },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL',
-        allowNull: true
+      imgDocumento: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -47,6 +41,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('Comunicado');
+    return queryInterface.dropTable('Documento');
   },
 };
